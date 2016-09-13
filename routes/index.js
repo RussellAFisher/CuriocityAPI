@@ -12,14 +12,14 @@ router.get('/geocode/json', function(req, res, next) {
         var address = JSON.parse(data);
         addressComponents = address.results[0].address_components;
         prop.homeInfo(addressComponents).then(function(data) {
-            var jsonConvert = parser.toJson(data);
-            res.send(jsonConvert);
+            var jsonConvert = JSON.parse(parser.toJson(data));
+            res.json(jsonConvert);
         });
     });
 });
 
 router.get('/', function(req, res, next) {
-    res.send('hello');
+    res.json('test page');
 });
 
 module.exports = router;
