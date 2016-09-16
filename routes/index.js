@@ -13,7 +13,10 @@ router.get('/geocode/json', function(req, res, next) {
         addressComponents = address.results[0].address_components;
         prop.homeInfo(addressComponents).then(function(data) {
             var jsonConvert = JSON.parse(parser.toJson(data));
-            res.json(jsonConvert);
+            var stringifyIt = JSON.stringify(jsonConvert);
+            var replaceErrant = stringifyIt.replace("SearchResults:searchresults", "SearchResults");
+            var reJSON = JSON.parse(replaceErrant);
+            res.json(reJSON);
         });
     });
 });
