@@ -10,8 +10,14 @@ var addressComponents;
 router.get('/geocode/json', function(req, res, next) {
     api.getAddress(req.query.lat, req.query.lng).then(function(data) {
         var address = JSON.parse(data);
+        var addressStuff;
         addressComponents = address.results[0].address_components;
-        prop.homeInfo(addressComponents).then(function(data) {
+        if (addressComponents[0].long_name.indexOf('-') !== -1) {
+            addressStuff = addressComponents[0].long_name.split('-')[0];
+        } else {
+            addressStuff = addressComponents[0].long_name;
+        }
+        prop.homeInfo(addressComponents, addressStuff).then(function(data) {
             var jsonConvert = JSON.parse(parser.toJson(data));
             var stringifyIt = JSON.stringify(jsonConvert);
             var replaceErrant = stringifyIt.replace("SearchResults:searchresults", "SearchResults");
@@ -26,3 +32,4 @@ router.get('/', function(req, res, next) {
 });
 
 module.exports = router;
+ts = router;
