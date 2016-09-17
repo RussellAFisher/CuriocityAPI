@@ -8,6 +8,7 @@ var parser = require('xml2json');
 var addressComponents;
 
 router.get('/geocode/json', function(req, res, next) {
+    var addressComponents;
     api.getAddress(req.query.lat, req.query.lng).then(function(data) {
         var address = JSON.parse(data);
         var addressStuff;
@@ -24,6 +25,19 @@ router.get('/geocode/json', function(req, res, next) {
             var reJSON = JSON.parse(replaceErrant);
             res.json(reJSON);
         });
+    });
+});
+
+router.get('/address/json', function(req, res, next) {
+    var street = req.query.street;
+    var city = req.query.city;
+    var state = req.query.state;
+    prop.homeInfoByAddress(street, city, state).then(function(data) {
+        var jsonConvert = JSON.parse(parser.toJson(data));
+        var stringifyIt = JSON.stringify(jsonConvert);
+        var replaceErrant = stringifyIt.replace("SearchResults:searchresults", "SearchResults");
+        var reJSON = JSON.parse(replaceErrant);
+        res.json(reJSON);
     });
 });
 
