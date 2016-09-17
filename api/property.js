@@ -13,7 +13,7 @@ module.exports = {
             request(url, callback);
         });
     },
-    homeInfoByAddress: function(num, street, city, state) {
+    homeInfoByAddress: function(street, city, state) {
         return new Promise((resolve, reject) => {
             var url = 'http://www.zillow.com/webservice/GetDeepSearchResults.htm?zws-id=X1-ZWz19l7src3rbf_64j9s&address=' + street + '&citystatezip=' + city + '%2C+' + state;
 
