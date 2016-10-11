@@ -13,7 +13,7 @@ This was created as a means of reducing bandwidth usage by my Curiocity app, col
   
 [Video Demo](https://www.youtube.com/watch?v=cxN_hplqXXk&feature=youtu.be)
 
-[Curiocity App](https://github.com/RussellAFisher/Curiocity)
+[Curiocity App Repository](https://github.com/RussellAFisher/Curiocity)
 
 
 #### Curiocity Landing Page:
